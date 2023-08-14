@@ -25,7 +25,7 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void loadListData() {
-        listLiveData.setValue(getListData());
+        listLiveData.postValue(getListData());
     }
 
     private List<String> getListData() {

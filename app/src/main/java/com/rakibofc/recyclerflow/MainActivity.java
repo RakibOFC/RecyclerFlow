@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.rakibofc.recyclerflow.databinding.ActivityMainBinding;
 
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         setContentView(binding.getRoot());
+
         viewModel.loadListData();
 
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
@@ -31,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
             binding.recyclerview.setAdapter(myAdapter);
         });
 
-        binding.fab.setOnClickListener(v -> recreate());
+        binding.fab.setOnClickListener(v -> {
+
+            Log.e("Click", "Fab");
+            recreate();
+        });
+        binding.fab2.setOnClickListener(v -> Log.e("Click", "Fab 2"));
+
+        Log.e("Info", "End of code");
     }
 }
