@@ -12,11 +12,12 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
 
+    public static final int ITEM_SIZE = 1000;
+
     private final MutableLiveData<List<String>> listLiveData;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-
         listLiveData = new MutableLiveData<>();
     }
 
@@ -24,17 +25,23 @@ public class MainViewModel extends AndroidViewModel {
         return listLiveData;
     }
 
-    public void loadListData() {
-        listLiveData.postValue(getListData());
+    public void loadMoreListData(int page, int itemsPerPage) {
+        int startIndex = (page - 1) * itemsPerPage;
+        int endIndex = startIndex + itemsPerPage;
+        List<String> newData = getPartialListData(startIndex, endIndex);
+        listLiveData.postValue(newData);
     }
 
-    private List<String> getListData() {
-
+    private List<String> getPartialListData(int startIndex, int endIndex) {
         Context context = getApplication().getApplicationContext();
         List<String> listData = new ArrayList<>();
 
-        for (int i = 1; i <= MainActivity.ITEM_SIZE; i++) {
-            listData.add(String.format(context.getString(R.string.dummy_list_item), i));
+        for (int i = startIndex + 1; i <= endIndex; i++) {
+            if (i <= ITEM_SIZE) {
+                listData.add(String.format(context.getString(R.string.dummy_list_item), i));
+            } else {
+                break; // Stop adding data when exceeding ITEM_SIZE
+            }
         }
         return listData;
     }

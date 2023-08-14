@@ -36,6 +36,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return data.size();
     }
 
+    public void addData(List<String> newData) {
+        int startPosition = data.size();
+        data.addAll(newData);
+        notifyItemRangeInserted(startPosition, newData.size());
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView textView;
