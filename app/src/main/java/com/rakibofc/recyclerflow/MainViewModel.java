@@ -12,7 +12,7 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
 
-    public static final int ITEM_SIZE = 1000;
+    public static final int ITEM_SIZE = 100000;
 
     private final MutableLiveData<List<String>> listLiveData;
 
@@ -33,6 +33,7 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     private List<String> getPartialListData(int startIndex, int endIndex) {
+
         Context context = getApplication().getApplicationContext();
         List<String> listData = new ArrayList<>();
 

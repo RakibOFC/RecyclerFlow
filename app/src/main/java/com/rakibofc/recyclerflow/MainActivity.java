@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
-        binding.tvTitle.setText(String.format(getString(R.string.total_data_size), MainViewModel.ITEM_SIZE));
+        // binding.tvTitle.setText(String.format(getString(R.string.total_data_size), MainViewModel.ITEM_SIZE));
 
         myAdapter = new MyAdapter(new ArrayList<>());
         binding.recyclerview.setAdapter(myAdapter);
